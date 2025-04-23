@@ -32,8 +32,10 @@ public class InventoryManager {
     public void removeItem(String item, int quantity) {
         if (inventory.containsKey(item)) {
             int currentQuantity = inventory.get(item);
-            if (currentQuantity >= quantity) {
+            if (currentQuantity > quantity) {
                 inventory.put(item, currentQuantity - quantity);
+            } else if (currentQuantity == quantity) {
+                inventory.remove(item);
             } else {
                 throw new IllegalArgumentException("Insufficient quantity in inventory");
             }
